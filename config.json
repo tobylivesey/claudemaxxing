@@ -1,0 +1,66 @@
+{
+  "_comment": "claudemaxxing config — edit these values to match your subscription",
+
+  "plan": {
+    "tier": "Pro",
+    "monthly_cost_gbp": 20,
+    "billing_day_of_month": 1,
+    "_tier_note": "Options: Pro ($20), Max5x ($100), Max20x ($200) -- update limits block if you change plan",
+    "_billing_day_note": "Set to whichever day of month your subscription renews"
+  },
+
+  "limits": {
+    "_note": "These are Anthropic's documented limits for Pro. Update if Anthropic changes them.",
+    "_last_verified": "2026-03-21",
+    "_source": "https://portkey.ai/blog/claude-code-limits/",
+    "window_hours": 5,
+    "window_token_limit": 44000,
+    "weekly_sonnet_hours_min": 40,
+    "weekly_sonnet_hours_max": 80,
+    "_sonnet_hours_note": "Anthropic's cap, affects top 5% of users — not a practical weekly target",
+    "expected_active_windows_per_week": 10,
+    "_windows_note": "Practical weekly target used for underutilization check (10 windows x 44K = 440K tokens)",
+    "opus_weekly_hours_min": 0,
+    "opus_weekly_hours_max": 0,
+    "_opus_note": "Pro plan has no documented Opus allocation — set to 0"
+  },
+
+  "thresholds": {
+    "window_underutil_pct": 50,
+    "_window_note": "Trigger burn if 5hr window usage < this % of limit",
+    "weekly_underutil_pct": 50,
+    "_weekly_note": "Trigger burn if rolling 7-day usage < this % of budget",
+    "last_night_trigger_hour": 21,
+    "_last_night_note": "Hour (local 24h) at which 'last night of week' logic activates (Sunday only)"
+  },
+
+  "policy_check": {
+    "enabled": true,
+    "check_interval_days": 14,
+    "_interval_note": "How often to re-fetch Anthropic's rate limit docs and diff them",
+    "last_checked": null,
+    "urls_to_monitor": [
+      "https://support.claude.com/en/articles/11647753-understanding-usage-and-length-limits",
+      "https://support.claude.com/en/articles/12429409-extra-usage-for-paid-claude-plans",
+      "https://portkey.ai/blog/claude-code-limits/",
+      "https://www.offsec.com/courses/pen-200/"
+    ],
+    "_offsec_note": "OffSec PEN-200 page monitored for syllabus changes — update _claude-review/oscp-syllabus.md if flagged"
+  },
+
+  "vault": {
+    "dir": "~/your-vault-repo",
+    "_note": "Path to the git repo you want vault_status.py to track. Supports ~ expansion."
+  },
+
+  "autoburn": {
+    "allowed_hours_start": 22,
+    "allowed_hours_end": 8,
+    "_note": "Only run during these hours. 22/8 = 22:00-07:59 (overnight). Set both to 0 for all-day."
+  },
+
+  "notifications": {
+    "print_to_terminal": true,
+    "_future": "Add email/webhook here if desired"
+  }
+}

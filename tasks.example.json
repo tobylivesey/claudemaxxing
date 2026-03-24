@@ -1,0 +1,46 @@
+{
+  "_comment": "Pre-identified token burn tasks. Run `python run.py --burn` to execute them in order.",
+  "_fill_prompt": "See FILL_TASKS_PROMPT.md for the prompt to give Claude to populate this file.",
+
+  "tasks": [
+    {
+      "id": "example-1",
+      "name": "Example: refactor a module",
+      "description": "Refactor src/foo.py for readability and add type hints",
+      "working_dir": "~/projects/your-project-name",
+      "prompt": "Review and refactor src/foo.py -- improve readability, add type hints, and write docstrings for all public functions.",
+      "estimated_tokens": 15000,
+      "tags": ["refactor", "code-quality"],
+      "enabled": false,
+      "_note": "Set enabled: true and fill in real values to activate"
+    },
+    {
+      "id": "example-2",
+      "name": "Example: generate documentation",
+      "description": "Write a comprehensive README for a project",
+      "working_dir": "~/projects/your-project-name",
+      "prompt": "Read the codebase and write a thorough README.md covering: what it does, how to install, how to use, configuration options, and examples. Save it to README.md.",
+      "estimated_tokens": 20000,
+      "tags": ["docs"],
+      "enabled": false
+    },
+    {
+      "id": "example-3",
+      "name": "Example: code review",
+      "description": "Deep code review of a project",
+      "working_dir": "~/projects/your-project-name",
+      "prompt": "Do a thorough code review of this project. Identify: bugs, security issues, performance problems, missing error handling, and opportunities to simplify. Write a detailed report.",
+      "estimated_tokens": 25000,
+      "tags": ["review", "security"],
+      "enabled": false
+    }
+  ],
+
+  "execution": {
+    "order": "sequential",
+    "_order_note": "sequential = top to bottom; could add 'random' or 'by_tag' later",
+    "stop_at_window_pct": 90,
+    "_stop_note": "Stop queueing more tasks once window usage exceeds this % of limit",
+    "skip_disabled": true
+  }
+}

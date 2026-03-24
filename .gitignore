@@ -1,0 +1,26 @@
+# Runtime state — contains scraped page snapshots, do not commit
+policy_state.json
+
+# Runtime logs
+burn.log
+cron.log
+
+# Personal task list — contains your real project paths and prompts
+tasks.json
+
+# Environment variables — contains org ID and session cookie, never commit
+.env
+
+# Claude Code local settings (may contain personal paths/permissions)
+.claude/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+
+# OS
+.DS_Store
+Thumbs.db
